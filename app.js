@@ -7,7 +7,7 @@ var express = require('express'),
 	methodOver	= require('method-override')
 
 //Connecting mongoose to the local database
-mongoose.connect('mongodb://localhost/dungeontools')
+mongoose.connect('mongodb://10.0.0.2/dndtools')
 // Using bluebird promise library for mongoose
 mongoose.Promise = require('bluebird')
 
@@ -45,11 +45,13 @@ app.use(function(req, res, next){
 //          Routes
 //=================================
 var classRoutes   = require('./routes/classes'),
-		indexRoutes   = require('./routes/index')
+		indexRoutes   = require('./routes/index'),
+		featRoutes    = require('./routes/feats')
 
 // Adding the class routes to express
 app.use('/classes', classRoutes)
 app.use(indexRoutes)
+app.use('/feats', featRoutes)
 
 // Running the server to listen on port 3000
 app.listen(3000, function () {
