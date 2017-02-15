@@ -1,0 +1,14 @@
+<% include ../partials/header.ejs %>
+<link rel="stylesheet" href="/css/feats/show.css">
+<div class="container">
+	<h1><%= feat.name %></h1>
+	<h2>Type: </h2>
+		<p><%= feat.type %></p>
+	<h2>Prerequisite: </h2>
+		<p><%= feat.prereqs %></p>
+	<h2>Benefit: </h2>
+		<p><%= feat.benefits %></p>
+	<h2>Special: </h2>
+		<p><%= feat.special %></p>
+</div>
+<% include ../partials/footer.ejs%>
