@@ -1,5 +1,4 @@
 body{
-	background: #f7e1b5;
 	height: 100%;
 }
 
@@ -8,11 +7,17 @@ html{
 }
 
 .navbar{
-	margin-bottom: 0px;
+	margin-bottom: 0;
 }
 
-div.container{
+div.container.content{
 	background: #f8f8f8;
-	padding-top: 15px;
 	height: 100%;
+}
+
+div.intro{
+	margin: 0 auto;
+	background: #3650A4;
+	color: white;
+	padding: 15px 150px;
 }
