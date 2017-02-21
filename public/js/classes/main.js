@@ -31,6 +31,7 @@ function createFeature() {
 	descriptionCol.appendChild(createElement('textarea', 'form-control'))
 }
 
+// Create element with classlist
 function createElement(type, classList) {
 	var element = document.createElement(type)
 	if(type == 'input'){
@@ -40,6 +41,7 @@ function createElement(type, classList) {
 	return element
 }
 
+// Create input element with classlist
 function createInput(classList) {
 	var input = document.createElement("input")
 	input.type = 'text'
@@ -47,12 +49,14 @@ function createInput(classList) {
 	return input
 }
 
+// Create a div element with class list
 function createDiv(classList){
 	var div = document.createElement('div')
 	div = addClasses(div, classList)
 	return div
 }
 
+// Create label with a list of classes
 function createLabel(text, classList) {
 	var label = document.createElement('label')
 	label.innerHTML = text
@@ -60,6 +64,7 @@ function createLabel(text, classList) {
 	return label
 }
 
+// Takes an element and list of classes and adds them to that element
 function addClasses(element, classList){
 	if(classList.constructor == Array){
 		for(i = 0; i<classList.length; i++){
