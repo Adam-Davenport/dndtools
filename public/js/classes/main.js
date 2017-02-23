@@ -29,9 +29,42 @@ function createFeature() {
 	feature.appendChild(descriptionCol)
 	// Create Input
 	descriptionCol.appendChild(createElement('textarea', 'form-control'))
+
+	// Create buttons
+	feature.appendChild(createMovementButtons())
+
+}
+// Create movement buttons
+function createMovementButtons() {
+	var div = createDiv('text-center')
+	var upButton = createUpButton(),
+			downButton  = createDownButton()
+	div.appendChild(upButton)
+	div.appendChild(downButton)
+	return div
 }
 
-// Create element with classlist
+function createUpButton() {
+	var upButton = createElement('button', ['btn', 'btn-primary'])
+	upButton.appendChild(createElement('span', ['glyphicon', 'glyphicon-arrow-up']))
+	upButton.onclick = function () {
+		moveUp(upButton)
+	}
+	upButton.type = 'button'
+	return upButton
+}
+
+function createDownButton() {
+	var downButton = createElement('button', ['btn', 'btn-primary'])
+	downButton.appendChild(createElement('span', ['glyphicon', 'glyphicon-arrow-down']))
+	downButton.onclick = function () {
+		moveDown(downButton)
+	}
+	downButton.type = 'button'
+	return downButton
+}
+
+// Create element with class list
 function createElement(type, classList) {
 	var element = document.createElement(type)
 	if(type == 'input'){
@@ -41,7 +74,7 @@ function createElement(type, classList) {
 	return element
 }
 
-// Create input element with classlist
+// Create input element with class list
 function createInput(classList) {
 	var input = document.createElement("input")
 	input.type = 'text'
@@ -76,4 +109,36 @@ function addClasses(element, classList){
 		element.classList.add(classList)
 		return element
 	}
+}
+
+// Move element up in the list
+function moveUp(element){
+	var featureDiv = movementSetup(element)
+	for(i=0; i<features.length; i++){
+		if(featureDiv === features[i]){
+			if(i > 0 && i < features.length){
+				featureDiv.parentNode.insertBefore(features[i], features[i-1])
+			}
+		}
+	}
+}
+
+// Move a class feature down in the list
+function moveDown(element) {
+	var featureDiv = movementSetup(element)
+	for(i=0; i<features.length; i++) {
+		if (featureDiv === features[i]) {
+			if ( i < features.length-1) {
+				featureDiv.parentNode.insertBefore(features[i+1], features[i])
+			}
+		}
+	}
+}
+
+// Movement setup
+function movementSetup(element) {
+	// Get the parent div of the button and then the parent of that div
+	var featureDiv = element.parentNode.parentNode
+	getFeatures()
+	return featureDiv
 }
