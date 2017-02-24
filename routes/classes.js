@@ -1,5 +1,6 @@
 var express = require('express'),
-	router  = express.Router()
+	router  = express.Router(),
+	Class = require('../models/classes')
 
 // Main page with links to all of the class pages
 router.get('/', function (req, res) {
@@ -22,8 +23,9 @@ router.get('/cleric', function (req, res) {
 })
 
 router.post('/', function (req, res) {
-	console.log(req.body.class)
-	res.send('post received')
+	var postedClass = req.body.class
+	postedClass.features = req.body.feature
+	res.send(postedClass)
 })
 
 module.exports = router
