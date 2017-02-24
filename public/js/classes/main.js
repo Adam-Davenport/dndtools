@@ -160,6 +160,7 @@ function movementSetup(element) {
 	return featureDiv
 }
 
+// Setting the names of inputs for posting
 function setName(name, description) {
 	getFeatures()
 	var f = features.length-1
