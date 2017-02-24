@@ -162,6 +162,7 @@ function movementSetup(element) {
 
 function setName(name, description) {
 	getFeatures()
-	name.name = 'class[feature][]'
-	description.name = 'class[feature][]'
+	var f = features.length-1
+	name.name = 'class[feature][' + f  +']'
+	description.name = 'class[feature][' + f + ']'
 }
