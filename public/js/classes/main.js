@@ -1,26 +1,37 @@
-var features = document.getElementsByClassName('feature')
+var features = document.getElementsByClassName('feature'),
+		featureContainer = document.getElementById('features')
 
+// Allows an element to be inserted after another
 function insertAfter(newNode, referenceNode) {
 	referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling)
 }
 
+// Update the list of features
 function getFeatures() {
 	features = document.getElementsByClassName('feature')
 }
 
+// Create a class feature
 function createFeature() {
 	// Update List
 	getFeatures()
 	// Create feature div and insert after last feature
 	var feature = createDiv(['feature', 'form-group', 'row'])
-	insertAfter(feature, features[features.length-1])
+	// Check and see if there are any class features in place
+	if(features.length == 0){
+		featureContainer.appendChild(feature)
+	}
+	else{
+		insertAfter(feature, features[features.length-1])
+	}
 	// Create name label with col sm 2
 	feature.appendChild(createLabel('Name:', 'col-sm-2'))
 	// Create column to store the input
 	var nameCol = createDiv('col-sm-10')
 	feature.appendChild(nameCol)
 	// Create Input
-	nameCol.appendChild(createInput('form-control'))
+	var nameInput = createInput('form-control')
+	nameCol.appendChild(nameInput)
 
 	// Create description label with col sm 2
 	feature.appendChild(createLabel('Description:', 'col-sm-2'))
@@ -28,7 +39,11 @@ function createFeature() {
 	var descriptionCol = createDiv('col-sm-10')
 	feature.appendChild(descriptionCol)
 	// Create Input
-	descriptionCol.appendChild(createElement('textarea', 'form-control'))
+	var descriptionInput = createElement('textarea', 'form-control')
+	descriptionCol.appendChild(descriptionInput)
+
+	// Add names to the inputs so data can be sent to the server in an organized post request
+	setName(nameInput, descriptionInput)
 
 	// Create buttons
 	feature.appendChild(createMovementButtons())
@@ -118,6 +133,7 @@ function moveUp(element){
 		if(featureDiv === features[i]){
 			if(i > 0 && i < features.length){
 				featureDiv.parentNode.insertBefore(features[i], features[i-1])
+				return
 			}
 		}
 	}
@@ -126,9 +142,10 @@ function moveUp(element){
 // Move a class feature down in the list
 function moveDown(element) {
 	var featureDiv = movementSetup(element)
-	for(i=0; i<features.length; i++) {
+	for(i=features.length; i>=0; i--) {
 		if (featureDiv === features[i]) {
 			if ( i < features.length-1) {
+				console.log(i)
 				featureDiv.parentNode.insertBefore(features[i+1], features[i])
 			}
 		}
@@ -141,4 +158,10 @@ function movementSetup(element) {
 	var featureDiv = element.parentNode.parentNode
 	getFeatures()
 	return featureDiv
+}
+
+function setName(name, description) {
+	getFeatures()
+	name.name = 'class[feature][]'
+	description.name = 'class[feature][]'
 }
