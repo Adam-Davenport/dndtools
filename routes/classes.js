@@ -25,7 +25,16 @@ router.get('/cleric', function (req, res) {
 router.post('/', function (req, res) {
 	var postedClass = req.body.class
 	postedClass.features = req.body.feature
-	res.send(postedClass)
+	Class.create(postedClass, function (error) {
+		if(error){
+			req.flash('error', error.message)
+			res.redirect('/classes')
+		}
+		else{
+			req.flash('success', 'Successfully added a new class.')
+			res.redirect('/classes')
+		}
+	})
 })
 
 module.exports = router
