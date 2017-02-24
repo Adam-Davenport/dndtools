@@ -55,6 +55,7 @@ function createMovementButtons() {
 	var upButton = createUpButton(),
 			downButton  = createDownButton()
 	div.appendChild(upButton)
+	div.innerHTML += ' '
 	div.appendChild(downButton)
 	return div
 }
