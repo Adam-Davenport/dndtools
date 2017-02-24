@@ -7,5 +7,10 @@
 	<tr>
 		<td><a href="/classes/artificer">Artificer</a></td>
 	</tr>
+	<% for(i=0; i<classes.length; i++){ %>
+	<tr>
+		<td><a href="/classes/<%= classes[i].name %>"><%= classes[i].name %></a></td>
+	</tr>
+	<% } %>
 </table>
 <% include ../partials/footer.ejs%>
