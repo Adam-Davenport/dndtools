@@ -21,4 +21,9 @@ router.get('/cleric', function (req, res) {
 	res.render('classes/artificer', {title: 'Artificer'})
 })
 
+router.post('/', function (req, res) {
+	console.log(req.body.class)
+	res.send('post received')
+})
+
 module.exports = router
