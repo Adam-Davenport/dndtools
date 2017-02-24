@@ -4,7 +4,15 @@ var express = require('express'),
 
 // Main page with links to all of the class pages
 router.get('/', function (req, res) {
-	res.render('classes/index', {title: 'Classes'})
+	Class.find({}, function (error, classes) {
+		if(error){
+			req.flash('error', error.message)
+			res.redirect('/')
+		}
+		else{
+			res.render('classes/index', {title: 'Classes', classes: classes})
+		}
+	})
 })
 
 // New Page
