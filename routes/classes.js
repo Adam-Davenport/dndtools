@@ -39,6 +39,7 @@ router.get('/:id', function (req, res) {
 	})
 })
 
+// Posting a new class to the database
 router.post('/', function (req, res) {
 	var postedClass = req.body.class
 	postedClass.features = req.body.feature
