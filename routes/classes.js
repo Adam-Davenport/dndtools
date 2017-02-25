@@ -20,14 +20,23 @@ router.get('/new', function (req, res) {
 	res.render('classes/new', {title: 'Add A New Class'})
 })
 
-// Artificer
-router.get('/artificer', function (req, res) {
-	res.render('classes/artificer', {title: 'Artificer'})
-})
-
-// Cleric
-router.get('/cleric', function (req, res) {
-	res.render('classes/artificer', {title: 'Artificer'})
+// Show page
+router.get('/:id', function (req, res) {
+	// search the db for the requested class
+	Class.findOne({name: req.params.id}, function (error, foundClass) {
+		if(error){
+			req.flash('error', error.message)
+			res.redirect('/classes')
+		}
+		else if(!foundClass){
+			req.flash('error', 'Class not found.')
+			res.redirect('/classes')
+		}
+		else{
+			console.log(foundClass)
+			res.render('classes/show', {title: foundClass.name, pc: foundClass})
+		}
+	})
 })
 
 router.post('/', function (req, res) {
