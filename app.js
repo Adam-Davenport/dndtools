@@ -7,7 +7,7 @@ var express = require('express'),
 	methodOver	= require('method-override')
 
 //Connecting mongoose to the local database
-mongoose.connect('mongodb://10.0.0.2/dndtools')
+mongoose.connect('mongodb://10.0.0.21/dndtools')
 // Using bluebird promise library for mongoose
 mongoose.Promise = require('bluebird')
 
