@@ -17,7 +17,13 @@ router.get('/', function (req, res) {
 
 // New Page
 router.get('/new', function (req, res) {
-	res.render('classes/new', {title: 'Add A New Class'})
+	var skillList = require('./classes/skills')
+	res.render('classes/new', {title: 'Add A New Class', skillList: skillList})
+})
+
+// Temp paladin page
+router.get('/paladin', function (req, res) {
+	res.render('classes/paladin', {title: 'Paladin'})
 })
 
 // Show page
@@ -41,6 +47,7 @@ router.get('/:id', function (req, res) {
 
 // Posting a new class to the database
 router.post('/', function (req, res) {
+	console.log(req.body.class)
 	var postedClass = req.body.class
 	postedClass.features = req.body.feature
 	Class.create(postedClass, function (error) {
