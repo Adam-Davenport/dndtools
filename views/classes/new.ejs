@@ -51,7 +51,7 @@
 				<div class="col-xs-2"></div>
 			</div>
 		<div class="form-group">
-			<div class="row">
+			<div class="row form-group">
 				<div class="col-xs-1">
 					<p><strong>Armor:</strong></p>
 				</div>
@@ -64,13 +64,34 @@
 				<div class="col-xs-1">
 					<label for="class[medium]">
 						<input type="checkbox" name="class[medium]">
-						Mediu
+						Med
 					</label>
 				</div>
 				<div class="col-xs-1">
 					<label for="class[heavy]">
 						<input type="checkbox" name="class[heavy]">
 						Heavy
+					</label>
+				</div>
+			</div>
+		</div>
+		<h2>Skills</h2>
+		<div class="form-group">
+			<div class="row">
+			<% for(i=0; i<skillList.length; i++){%>
+				<div class="col-sm-3">
+					<label for="">
+						<input type="checkbox" name="class[skill][<%=skillList[i]%>]">
+						<%= skillList[i] %>
+					</label>
+			</div>
+			<% } %>
+			</div>
+			<div class="row">
+				<div class="col-sm-2">
+					<label for="">
+						<input type="checkbox" name="class[acrobatics]">
+						Acrobatics
 					</label>
 				</div>
 			</div>
@@ -107,25 +128,30 @@
 			</label>
 		</div>
 		<h2>Class Features</h2>
+		<h3>Advancement:</h3>
+		<div class="row form-group">
+			<div class="col-xs-1"><h4>Level</h4></div>
+			<div class="col-xs-11"><div class="text-center"><h4>Special</h4></div></div>
+		</div>
+		<% for(i=1; i<21; i++){ %>
+			<div class="row form-group">
+				<div class="form-group">
+					<div class="col-xs-1">
+						<label for="class[advancement][<%=i%>]">
+							<%if(i==1){%> <%=i%>st <%}%>
+							<%if(i==2){%> <%=i%>nd <%}%>
+							<%if(i==3){%> <%=i%>rd <%}%>
+							<%if(i>3){%>  <%=i%>th <%}%>
+						</label>
+					</div>
+					<div class="col-xs-11">
+						<input type="text" class="form-control" name="class[advancement][<%=i%>]">
+					</div>
+				</div>
+			</div>
+		<% } %>
+		<h3>Descriptions:</h3>
 		<div id="features">
-		<!--<div class="feature form-group row">-->
-			<!--<div class="form-group">-->
-				<!--<label for="" class="col-sm-2">Name:</label>-->
-				<!--<div class="col-sm-10">-->
-					<!--<input type="text" class="form-control" name="class[feature][][name]">-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--<div class="form-group">-->
-				<!--<label for="" class="col-sm-2">Description:</label>-->
-				<!--<div class="col-sm-10">-->
-					<!--<textarea name="class[feature][][description]" class="form-control"></textarea>-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--<div class="text-center">-->
-				<!--<button class="btn btn-primary" type="button" onclick="moveUp(this)"><span class="glyphicon glyphicon-arrow-up"></span></button>-->
-				<!--<button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-arrow-down"></span></button>-->
-			<!--</div>-->
-		<!--</div>-->
 		</div>
 		<button class="btn btn-primary" type="button" onclick="createFeature()">Add Feature</button>
 		<button class="btn btn-primary form-control">Submit</button>
