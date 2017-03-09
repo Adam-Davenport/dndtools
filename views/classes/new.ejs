@@ -17,9 +17,9 @@
 		<div class="form-group">
 			<label for="class[bab]">Base Attack Bonus:</label>
 			<select name="class[bab]" id="" class="form-control">
-				<option value="Full">Full</option>
-				<option value="Medium">Medium</option>
-				<option value="Half">Half</option>
+				<option value="1">Full</option>
+				<option value="0.75">Medium</option>
+				<option value="0.5">Half</option>
 			</select>
 		</div>
 		<div class="form-group">
@@ -81,7 +81,7 @@
 			<% for(i=0; i<skillList.length; i++){%>
 				<div class="col-sm-3">
 					<label for="">
-						<input type="checkbox" name="class[skill][<%=skillList[i]%>]">
+						<input type="checkbox" name="class[skill][<%i%>]">
 						<%= skillList[i] %>
 					</label>
 			</div>
