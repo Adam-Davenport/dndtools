@@ -1,3 +1,25 @@
 <% include ../partials/header.ejs %>
 <h1><%= pc.name %></h1>
+<h2>Advancement</h2>
+<table class="table">
+	<tr>
+		<th>Level</th>
+		<th>BaB</th>
+		<th>Special</th>
+		<th>Fort</th>
+		<th>Ref</th>
+		<th>Will</th>
+	</tr>
+	<% for(i=1; i<21; i++){ %>
+	<tr>
+		<td><%= i %></td>
+		<td><%= Math.floor(i*pc.bab) %></td>
+		<td><%= pc.special[i] %></td>
+		<td><%= 2 %></td>
+		<td><%= 2 %></td>
+		<td><%= 2 %></td>
+
+	</tr>
+	<% } %>
+</table>
 <% include ../partials/footer.ejs %>
